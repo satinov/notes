@@ -1,10 +1,14 @@
+import { Provider } from "react-redux";
 import { BrowserRouter } from "react-router-dom";
 import PrimaryTemplate from "./components/PrimaryTemplate";
+import store from "./store";
 
 function App() {
   return (
     <BrowserRouter>
-      <PrimaryTemplate />
+      <Provider store={store}>
+        <PrimaryTemplate />
+      </Provider>
     </BrowserRouter>
   );
 }
