@@ -1,9 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { makeStyles, Theme, createStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
 
 import { Header } from "./Header";
 import { Main } from "./Main";
+import { useAuth } from "../../features/auth/hooks/useAuth";
+import { useRoutes } from "../../hooks/useRoutes";
+import { getToken } from "../../features/auth/utils";
+import { useDispatch } from "react-redux";
+import { loginByToken } from "../../features/auth/authSlice";
 
 const drawerWidth = 240;
 
@@ -71,6 +76,23 @@ const useStyles = makeStyles((theme: Theme) =>
 export default function PrimaryTemplate() {
   const classes = useStyles();
 
+  const dispatch = useDispatch();
+
+  const { isAuth, isInitLoginLoading } = useAuth();
+
+  useEffect(() => {
+    const token = getToken();
+    if (!isAuth && token) {
+      const tryLoginByToken = async () => {
+        dispatch(loginByToken());
+      };
+      tryLoginByToken();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [dispatch]);
+
+  const routes = useRoutes(isAuth);
+
   const [open, setOpen] = React.useState(true);
 
   const handleDrawerOpen = () => {
@@ -92,7 +114,11 @@ export default function PrimaryTemplate() {
         handleDrawerOpen={handleDrawerOpen}
       />
 
-      <Main classes={classes} open={open} />
+      {!isInitLoginLoading ? (
+        <Main classes={classes}>{routes}</Main>
+      ) : (
+        <h1>Loading</h1>
+      )}
     </div>
   );
 }

@@ -1,28 +1,13 @@
-import { combineReducers, createSlice } from "@reduxjs/toolkit";
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore, Action } from "@reduxjs/toolkit";
+import { ThunkAction } from "redux-thunk";
 
-let initialState = {
-  count: 0,
-};
-
-const counterSlice = createSlice({
-  name: "counter",
-  initialState,
-  reducers: {
-    inc(state) {
-      state.count++;
-    },
-  },
-});
-
-// const { inc } = counterSlice.actions;
+import rootReducer, { RootState } from "./rootReducer";
 
 const store = configureStore({
-  reducer: combineReducers({
-    counter: counterSlice.reducer,
-  }),
+  reducer: rootReducer,
 });
 
 export type AppDispatch = typeof store.dispatch;
+export type AppThunk = ThunkAction<void, RootState, null, Action<string>>;
 
 export default store;

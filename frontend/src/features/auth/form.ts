@@ -2,14 +2,14 @@ import * as yup from "yup";
 
 // Registration
 export interface RegistrationFormData {
-  firstName: string;
+  name: string;
   email: string;
   password: string;
   passwordConfirmation: string;
 }
 
 export const registerValidationScheme = yup.object().shape({
-  firstName: yup.string().required("Firstname is required"),
+  name: yup.string().required("Firstname is required"),
   email: yup.string().email().required("Email is required"),
   password: yup.string().required("Password is requred"),
   passwordConfirmation: yup.string().test({
@@ -26,10 +26,10 @@ export const registerValidationScheme = yup.object().shape({
 });
 
 export const registerDefaultValues: RegistrationFormData = {
-  firstName: "",
-  email: "",
-  password: "",
-  passwordConfirmation: "",
+  name: "test",
+  email: "test@mail.ru",
+  password: "test123",
+  passwordConfirmation: "test123",
 };
 
 // Login
@@ -44,6 +44,6 @@ export const loginValidationScheme = yup.object().shape({
 });
 
 export const loginDefaultValues: LoginFormData = {
-  email: "",
-  password: "",
+  email: "test@mail.ru",
+  password: "test123",
 };

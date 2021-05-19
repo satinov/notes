@@ -1,6 +1,6 @@
 import { makeStyles, Tab } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
-import { AppTabs, TabPanel } from "../../components/AppTabs";
+import { AppTabs, TabPanel } from "../../../components/AppTabs";
 import { LoginForm } from "./LoginForm";
 import { RegisterForm } from "./RegisterForm";
 
@@ -9,15 +9,17 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "center",
+    // alignItems: "center",
     padding: theme.spacing(2),
-
+    "& > .MuiAlert-root ": {
+      marginBottom: theme.spacing(1),
+    },
     "& .MuiTextField-root": {
-      margin: theme.spacing(1),
+      marginBottom: theme.spacing(1),
       width: "100%",
     },
     "& .MuiButtonBase-root": {
-      margin: theme.spacing(2),
+      // margin: theme.spacing(2),
     },
   },
 }));
