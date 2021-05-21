@@ -2,7 +2,8 @@ import axios, { AxiosRequestConfig } from "axios";
 import { getToken } from "../features/auth/utils";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:8000/api",
+  // baseURL: "http://localhost:8000/api",
+  baseURL: "/api",
 });
 export default class ApiService {
   constructor() {
