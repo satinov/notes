@@ -11,8 +11,6 @@ import { ControllerTextInput } from "../../../components/ControllerFormInputs";
 import { add } from "../noteDetailsSlice";
 import { noteDefaultValues, noteValidationScheme } from "../form";
 import { useHistory } from "react-router";
-import "draft-js/dist/Draft.css";
-import classes from "*.module.css";
 interface Props extends HTMLAttributes<HTMLFormElement> {
   isLoading: boolean;
 }

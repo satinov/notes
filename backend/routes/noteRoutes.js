@@ -7,7 +7,7 @@ import {
   updateProduct,
   deleteProduct,
   copyNote,
-} from "../controllers/notesController";
+} from "../controllers/notesController.js";
 import { protect } from "../middleware/authMiddleware.js";
 
 router.route("/").get(protect, getNotes).post(protect, createNote);
