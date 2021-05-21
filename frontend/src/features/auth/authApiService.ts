@@ -2,7 +2,7 @@ import ApiService from "../../services/apiService";
 import { LoginFormData, RegistrationFormData } from "./form";
 import { CurrentUser, HTTPCurentUserResponse } from "./types";
 
-class AuthApiService extends ApiService {
+export class AuthApiService extends ApiService {
   async login(formData: LoginFormData) {
     try {
       const { data } = await ApiService.fetcher.post<HTTPCurentUserResponse>(
@@ -10,7 +10,7 @@ class AuthApiService extends ApiService {
         formData
       );
       return {
-        user: this.transformUser(data),
+        user: AuthApiService.transformCurrentUser(data),
         token: data.token,
       };
     } catch (error) {
@@ -23,7 +23,7 @@ class AuthApiService extends ApiService {
       const { data } = await ApiService.fetcher.get<HTTPCurentUserResponse>(
         "/users/profile"
       );
-      return this.transformUser(data);
+      return AuthApiService.transformCurrentUser(data);
     } catch (error) {
       throw error.response.data;
     }
@@ -36,7 +36,7 @@ class AuthApiService extends ApiService {
         formData
       );
       return {
-        user: this.transformUser(data),
+        user: AuthApiService.transformCurrentUser(data),
         token: data.token,
       };
     } catch (error) {
@@ -44,7 +44,9 @@ class AuthApiService extends ApiService {
     }
   }
 
-  transformUser(userResponse: HTTPCurentUserResponse): CurrentUser {
+  static transformCurrentUser(
+    userResponse: HTTPCurentUserResponse
+  ): CurrentUser {
     return {
       email: userResponse.email,
       id: userResponse._id,

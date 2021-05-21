@@ -32,7 +32,7 @@ export const LoginForm: FC<Props> = (props) => {
   const onSubmit = handleSubmit(async (formValues: LoginFormData) => {
     try {
       await dispatch(login(formValues));
-      history.push("/");
+      history.push("/my-notes");
     } catch (error) {
       debugger;
     }
@@ -58,8 +58,8 @@ export const LoginForm: FC<Props> = (props) => {
         name="email"
       />
       <ControllerTextInput
-        inputProps={{ variant: "filled" }}
-        label="Password"
+        inputProps={{ variant: "filled", type: "password" }}
+        label="Пароль"
         control={control}
         name="password"
       />
@@ -69,7 +69,7 @@ export const LoginForm: FC<Props> = (props) => {
         type="submit"
         disabled={isLoginLoading}
       >
-        Login
+        Войти
       </Button>
     </form>
   );

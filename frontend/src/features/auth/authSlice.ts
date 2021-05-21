@@ -1,14 +1,15 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import ApiService from "../../services/apiService";
 import { AppThunk } from "../../store";
 import { RootState } from "../../store/rootReducer";
 import authApi from "./authApiService";
 import { LoginFormData, RegistrationFormData } from "./form";
 import { CurrentUser } from "./types";
-import { setToken } from "./utils";
+import { clearToken, setToken } from "./utils";
 
 export interface AuthState {
   isAuth: boolean;
-  currentUser?: CurrentUser;
+  currentUser: CurrentUser;
   isLoading: {
     login: boolean;
     register: boolean;
@@ -21,7 +22,7 @@ export interface AuthState {
 }
 
 export const initialState: AuthState = {
-  isAuth: true,
+  isAuth: false,
   isLoading: {
     login: false,
     register: false,
@@ -69,7 +70,7 @@ export const authSlice = createSlice({
     },
     setLogOut: (state) => {
       state.isAuth = false;
-      state.currentUser = undefined;
+      state.currentUser = { email: "", id: "", name: "" };
       state.error = {
         login: null,
         register: null,
@@ -115,6 +116,7 @@ export const login =
       dispatch(startLoading("login"));
       const { user, token } = await authApi.login(formData);
       setToken(token);
+      ApiService.updateToken();
       dispatch(setAuthSuccess(user));
     } catch (error) {
       dispatch(setAuthFailed({ type: "login", data: error.message }));
@@ -142,6 +144,7 @@ export const register =
       dispatch(startLoading("register"));
       const { user, token } = await authApi.register(formData);
       setToken(token);
+      ApiService.updateToken();
       dispatch(setAuthSuccess(user));
     } catch (error) {
       dispatch(setAuthFailed({ type: "register", data: error.message }));
@@ -151,15 +154,10 @@ export const register =
     }
   };
 
-// export const logOut = (): AppThunk => async (dispatch) => {
-//   try {
-//     dispatch(setLoading(''));
-//   } catch (error) {
-//     dispatch(setAuthFailed(error));
-//   } finally {
-//     dispatch(setLoading(false));
-//   }
-// };
+export const logOut = (): AppThunk => async (dispatch) => {
+  dispatch(setLogOut());
+  clearToken();
+};
 
 export const authSelector = (state: RootState) => state.auth;
 export default authSlice.reducer;

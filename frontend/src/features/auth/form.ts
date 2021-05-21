@@ -26,10 +26,10 @@ export const registerValidationScheme = yup.object().shape({
 });
 
 export const registerDefaultValues: RegistrationFormData = {
-  name: "test",
-  email: "test@mail.ru",
-  password: "test123",
-  passwordConfirmation: "test123",
+  name: "",
+  email: "",
+  password: "",
+  passwordConfirmation: "",
 };
 
 // Login
@@ -44,6 +44,6 @@ export const loginValidationScheme = yup.object().shape({
 });
 
 export const loginDefaultValues: LoginFormData = {
-  email: "test@mail.ru",
-  password: "test123",
+  email: "",
+  password: "",
 };

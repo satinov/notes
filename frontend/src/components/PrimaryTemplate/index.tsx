@@ -9,6 +9,7 @@ import { useRoutes } from "../../hooks/useRoutes";
 import { getToken } from "../../features/auth/utils";
 import { useDispatch } from "react-redux";
 import { loginByToken } from "../../features/auth/authSlice";
+import Navbar from "./NavBar";
 
 const drawerWidth = 240;
 
@@ -19,6 +20,7 @@ const useStyles = makeStyles((theme: Theme) =>
       flexDirection: "column",
     },
     appBar: {
+      overflowY: "hidden",
       transition: theme.transitions.create(["margin", "width"], {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
@@ -57,11 +59,14 @@ const useStyles = makeStyles((theme: Theme) =>
     },
     content: {
       flexGrow: 1,
+      height: "calc(100vh - 56px - 56px)",
       padding: theme.spacing(3),
+      paddingRight: theme.spacing(1) / 2,
       transition: theme.transitions.create("margin", {
         easing: theme.transitions.easing.sharp,
         duration: theme.transitions.duration.leavingScreen,
       }),
+      overflowY: "scroll",
     },
     contentShift: {
       transition: theme.transitions.create("margin", {
@@ -78,7 +83,7 @@ export default function PrimaryTemplate() {
 
   const dispatch = useDispatch();
 
-  const { isAuth, isInitLoginLoading } = useAuth();
+  const { isAuth, isInitLoginLoading, currentUser } = useAuth();
 
   useEffect(() => {
     const token = getToken();
@@ -106,7 +111,6 @@ export default function PrimaryTemplate() {
   return (
     <div className={classes.root}>
       <CssBaseline />
-
       <Header
         classes={classes}
         open={open}
@@ -114,11 +118,10 @@ export default function PrimaryTemplate() {
         handleDrawerOpen={handleDrawerOpen}
       />
 
-      {!isInitLoginLoading ? (
-        <Main classes={classes}>{routes}</Main>
-      ) : (
-        <h1>Loading</h1>
-      )}
+      <Main classes={classes}>
+        {!isInitLoginLoading ? routes : <h1>Loading</h1>}
+      </Main>
+      <Navbar />
     </div>
   );
 }

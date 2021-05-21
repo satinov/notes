@@ -11,6 +11,14 @@ export default class ApiService {
       ApiService.fetcher.defaults.headers["Authorization"] = `Bearer ${token}`;
     }
   }
+
+  static updateToken = () => {
+    const token = getToken();
+    if (token) {
+      ApiService.fetcher.defaults.headers["Authorization"] = `Bearer ${token}`;
+    }
+  };
+
   static fetcher = axiosInstance;
 
   get<T>(url: string, config?: AxiosRequestConfig) {

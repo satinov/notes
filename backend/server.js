@@ -6,7 +6,7 @@ import morgan from "morgan";
 import cors from "cors";
 import { notFound, errorHandler } from "./middleware/errorMiddleware.js";
 import userRoutes from "./routes/userRoutes.js";
-import productRoutes from "./routes/productRoutes.js";
+import noteRoutes from "./routes/noteRoutes";
 import orderRoutes from "./routes/orderRoutes.js";
 
 if (process.env.NODE_ENV === "development") {
@@ -21,7 +21,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// app.use("/api/products", productRoutes);
+app.use("/api/notes", noteRoutes);
 app.use("/api/users", userRoutes);
 // app.use("/api/orders", orderRoutes);
 

@@ -33,8 +33,8 @@ export const AuthPage = () => {
         <AppTabs
           tabs={
             <>
-              <Tab label="Login" />
-              <Tab label="Register" />
+              <Tab label="Войти" />
+              <Tab label="Регистрация" />
             </>
           }
         >

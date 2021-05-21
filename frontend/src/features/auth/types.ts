@@ -1,8 +1,6 @@
-export type CurrentUser = {
-  id: string;
-  name: string;
-  email: string;
-};
+import { User } from "../users/types";
+
+export type CurrentUser = User;
 
 export type HTTPCurentUserResponse = {
   _id: string;

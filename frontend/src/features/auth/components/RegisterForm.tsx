@@ -29,10 +29,8 @@ export const RegisterForm: FC<Props> = (props) => {
   const onSubmit = handleSubmit(async (formValues: RegistrationFormData) => {
     try {
       await dispatch(register(formValues));
-      history.push("/");
-    } catch (error) {
-      debugger;
-    }
+      history.push("/my-notes");
+    } catch (error) {}
   });
 
   return (
@@ -50,7 +48,7 @@ export const RegisterForm: FC<Props> = (props) => {
       )}
       <ControllerTextInput
         inputProps={{ variant: "filled" }}
-        label="Name"
+        label="Имя"
         control={control}
         name="name"
       />
@@ -61,14 +59,14 @@ export const RegisterForm: FC<Props> = (props) => {
         name="email"
       />
       <ControllerTextInput
-        inputProps={{ variant: "filled" }}
-        label="Password"
+        inputProps={{ variant: "filled", type: "password" }}
+        label="Пароль"
         control={control}
         name="password"
       />
       <ControllerTextInput
-        inputProps={{ variant: "filled" }}
-        label="Confirm Password"
+        inputProps={{ variant: "filled", type: "password" }}
+        label="Повторите пароль"
         control={control}
         name="passwordConfirmation"
       />
@@ -78,7 +76,7 @@ export const RegisterForm: FC<Props> = (props) => {
         type="submit"
         disabled={isRegisterLoading}
       >
-        Register
+        Зарегестрироваться
       </Button>
     </form>
   );

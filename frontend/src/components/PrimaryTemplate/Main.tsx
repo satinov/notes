@@ -7,5 +7,9 @@ interface Props {
 }
 
 export const Main: FC<Props> = ({ classes, children }) => {
-  return <main className={classes.content}>{children}</main>;
+  return (
+    <main id="main" className={classes.content}>
+      {children}
+    </main>
+  );
 };
