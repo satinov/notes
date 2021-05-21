@@ -74,9 +74,6 @@ export const Header: FC<Props> = ({
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
     React.useState<null | HTMLElement>(null);
 
-  const isMenuOpen = Boolean(anchorEl);
-  const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
-
   const { pathname } = useLocation();
   let key: keyof typeof routeNamesMap;
   let title: string = "JS-КОНСПЕКТ";
@@ -84,13 +81,9 @@ export const Header: FC<Props> = ({
     (k) => {
       const element = routeNamesMap[k];
       const match = matchPath(k, pathname);
-      console.log(match);
-
       if (match && match.isExact) title = element.toLocaleUpperCase();
     }
   );
-
-  console.log(title);
 
   const handleProfileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);

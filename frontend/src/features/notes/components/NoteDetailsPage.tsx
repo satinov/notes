@@ -46,11 +46,11 @@ const NoteDetails = ({
   const location = useLocation();
   let content: React.ReactNode;
 
-  if (isLoading) content = <h1>Loading...</h1>;
+  if (isLoading) content = <h1>Загрузка...</h1>;
 
   if (error) content = <h1>{error}</h1>;
 
-  if (note) {
+  if (!isLoading && note) {
     content = (
       <>
         <div className={classes.actions}>
@@ -141,11 +141,11 @@ const EditNoteDetails = ({
 
   let content: React.ReactNode;
 
-  if (isLoading) content = <h1>Loading...</h1>;
+  if (isLoading) content = <h1>Загрузка...</h1>;
 
   if (error) content = <h1>{error}</h1>;
 
-  if (note) {
+  if (!isLoading && note) {
     content = (
       <Grid container justify="center">
         <Grid item xs={12} lg={8}>
@@ -206,6 +206,7 @@ export const NoteDetailsPage = (props: Props) => {
   } = useNoteDetails();
   const { currentUser } = useAuth();
   const id = props.match.params.id;
+  console.log(isReadLoading, "readLoad");
 
   useEffect(() => {
     dispatch(getById(id));

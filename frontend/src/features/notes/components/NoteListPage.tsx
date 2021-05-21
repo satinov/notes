@@ -106,16 +106,16 @@ export const NoteListPage = (props: Props) => {
   let content: React.ReactNode;
 
   if (isLoading && !notes.length) {
-    content = <h1>Loading</h1>;
+    content = <h1>Загрузка...</h1>;
   } else if (!notes.length) {
-    content = <h1>Empty</h1>;
+    content = <h1>Пусто</h1>;
   } else {
     content = (
       <InfiniteScroll
         dataLength={notes.length} //This is important field to render the next data
         next={fetchNotesHandler}
         hasMore={hasNextPage()}
-        loader={<h4>Loading222...</h4>}
+        loader={<h4>Загрузка...</h4>}
         scrollableTarget="main"
         style={{
           overflow: "hidden",

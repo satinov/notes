@@ -119,7 +119,7 @@ export default function PrimaryTemplate() {
       />
 
       <Main classes={classes}>
-        {!isInitLoginLoading ? routes : <h1>Loading</h1>}
+        {!isInitLoginLoading ? routes : <h1>Загрузка...</h1>}
       </Main>
       <Navbar />
     </div>

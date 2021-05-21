@@ -16,3 +16,4 @@ const connectDB = async () => {
 };
 
 export default connectDB;
+// mongodb+srv://akzhol:carambatv01@cluster0.osdlq.mongodb.net/js-notes
