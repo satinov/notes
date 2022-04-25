@@ -82,7 +82,9 @@ export const add =
       await noteApi.add(formData);
       dispatch(setNoteDetailsSuccess({ type: "create" }));
     } catch (error) {
-      dispatch(setNoteDetailsFailur({ type: "create", data: error.message }));
+      dispatch(
+        setNoteDetailsFailur({ type: "create", data: (error as any).message })
+      );
     } finally {
       dispatch(stopLoading("create"));
     }
@@ -95,7 +97,9 @@ export const update =
       const note = await noteApi.update(id, formData);
       dispatch(setNoteDetailsSuccess({ type: "update", data: note }));
     } catch (error) {
-      dispatch(setNoteDetailsFailur({ type: "update", data: error.message }));
+      dispatch(
+        setNoteDetailsFailur({ type: "update", data: (error as any).message })
+      );
     } finally {
       dispatch(stopLoading("update"));
     }

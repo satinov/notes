@@ -25,7 +25,7 @@ export const ControllerTextInput = <
           value={value}
           onChange={onChange}
           error={!!error}
-          helperText={error ? error.message : null}
+          helperText={error ? (error as any).message : null}
         />
       )}
       {...props}

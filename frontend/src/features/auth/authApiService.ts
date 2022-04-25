@@ -14,7 +14,7 @@ export class AuthApiService extends ApiService {
         token: data.token,
       };
     } catch (error) {
-      throw error.response.data;
+      throw (error as any).response.data;
     }
   }
 
@@ -25,7 +25,7 @@ export class AuthApiService extends ApiService {
       );
       return AuthApiService.transformCurrentUser(data);
     } catch (error) {
-      throw error.response.data;
+      throw (error as any).response.data;
     }
   }
 
@@ -40,7 +40,7 @@ export class AuthApiService extends ApiService {
         token: data.token,
       };
     } catch (error) {
-      throw error.response.data;
+      throw (error as any).response.data;
     }
   }
 

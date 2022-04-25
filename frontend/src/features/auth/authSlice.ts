@@ -119,7 +119,7 @@ export const login =
       ApiService.updateToken();
       dispatch(setAuthSuccess(user));
     } catch (error) {
-      dispatch(setAuthFailed({ type: "login", data: error.message }));
+      dispatch(setAuthFailed({ type: "login", data: (error as any).message }));
     } finally {
       dispatch(stopLoading("login"));
     }
@@ -147,7 +147,9 @@ export const register =
       ApiService.updateToken();
       dispatch(setAuthSuccess(user));
     } catch (error) {
-      dispatch(setAuthFailed({ type: "register", data: error.message }));
+      dispatch(
+        setAuthFailed({ type: "register", data: (error as any).message })
+      );
       throw error;
     } finally {
       dispatch(stopLoading("register"));

@@ -59,7 +59,9 @@ export const NoteAddForm: FC<Props> = ({ isLoading, ...props }) => {
           <div style={{ marginBottom: 16 }}>
             <ReactQuill value={value} onChange={onChange} />
             {error ? (
-              <FormHelperText error={true}>{error.message}</FormHelperText>
+              <FormHelperText error={true}>
+                {(error as any).message}
+              </FormHelperText>
             ) : null}
           </div>
         )}
