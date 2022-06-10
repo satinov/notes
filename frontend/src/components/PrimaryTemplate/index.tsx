@@ -67,6 +67,7 @@ const useStyles = makeStyles((theme: Theme) =>
         duration: theme.transitions.duration.leavingScreen,
       }),
       overflowY: "scroll",
+      marginBottom: "env(safe-area-inset-bottom, 0px)",
     },
     contentShift: {
       transition: theme.transitions.create("margin", {

@@ -30,7 +30,10 @@ const Navbar = () => {
   };
 
   return (
-    <Grid container style={{ position: "fixed", bottom: 0 }}>
+    <Grid
+      container
+      style={{ position: "fixed", bottom: "env(safe-area-inset-bottom, 0px)" }}
+    >
       <Grid xs={12}>
         <BottomNavigation
           value={value}
